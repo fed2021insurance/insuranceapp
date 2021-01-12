@@ -1,1 +1,80 @@
-<p>forms works!</p>
+<form [formGroup]="reportCarForm" id="DamInjForm">
+    <h1>Damages/ Injuries</h1>
+    <div formGroupName="userData">
+        <div>
+            <mat-form-field appearance="fill">
+                <mat-label>Mechanical Damage</mat-label>
+                <input matInput formControlName="mechDam">
+            </mat-form-field>
+        </div>
+
+        <div>
+            <mat-form-field appearance="fill">
+                <mat-label>Body Damage</mat-label>
+                <input matInput formControlName="bodyDam">
+            </mat-form-field>
+        </div>
+    </div>
+
+    <div formArrayName="moreCarDam">
+            <h4>Add Another Car</h4>
+            <button mat-raised-button color="warn" (click)="onAddCar()">Add</button>
+
+            <div *ngFor="let carDam of reportCarForm.get('moreCarDam')['controls']; let i = index">
+                <div>
+                    <mat-form-field appearance="fill">
+                        <mat-label>Mechanical Damage</mat-label>
+                        <input matInput>
+                    </mat-form-field>
+                </div>   
+
+                <div>
+                    <mat-form-field appearance="fill">
+                        <mat-label>Body Damage</mat-label>
+                        <input matInput>
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+
+</form>
+<br><br>
+<form [formGroup]="reportPersonnelForm" id="personnelInjForm">
+    <h1>Personnel Injuries</h1>
+    <div formGroupName="userPersonnelData">
+        <div>
+            <mat-form-field appearance="fill">
+                <mat-label>Personnel Name</mat-label>
+                <input matInput formControlName="name">
+            </mat-form-field>
+        </div>
+
+        <div>
+            <mat-form-field appearance="fill">
+                <mat-label>Injuries</mat-label>
+                <input matInput formControlName="injuries">
+            </mat-form-field>
+        </div>
+    </div>
+
+    <div formArrayName="morePersonnelInj">
+        <h4>Add Another Person</h4>
+        <button mat-raised-button color="warn" (click)="onAddPerson()">Add</button>
+
+        <div *ngFor="let personnel of reportPersonnelForm.get('morePersonnelInj')['controls']; let i = index">
+            <div>
+                <mat-form-field appearance="fill">
+                    <mat-label>Personnel Name</mat-label>
+                    <input matInput>
+                </mat-form-field>
+            </div>   
+
+            <div>
+                <mat-form-field appearance="fill">
+                    <mat-label>Injuries</mat-label>
+                    <input matInput>
+                </mat-form-field>
+            </div>
+        </div>
+    </div>
+</form>
