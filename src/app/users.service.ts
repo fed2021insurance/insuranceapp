@@ -14,14 +14,27 @@ export class UsersService {
 
   constructor(private http: HttpClient) { }
 
-  LogIn(formObj: Object) {
-    let req = "httpReq_w/FormObj's_content";
+  LogIn(formObj: { username: string, password: string }) {
 
-    if(req === null) {
-      return "User Not Found"
-    } else {
-      return this.currentUser;
-    }
+   this.http.get(
+      "https://insuranceprj-default-rtdb.firebaseio.com/state/.json"
+    ).subscribe(resData => { 
+      let keys = Object.keys(resData);
+      for(let i = 0; i < keys.length; i++) {
+        let key = keys[i];
+        if (resData[key].username === formObj.username && resData[key].password === formObj.password) {
+         this.currentUser = true;
+        }
+      }
+  
+      // console.log(resData); 
+    })
+
+    // if(req === null) {
+    //   return "User Not Found"
+    // } else {
+    //   return this.currentUser;
+    // }
   }
 
   LogOut() {

@@ -13,7 +13,12 @@ export class AppComponent {
   constructor(private userSer: UsersService) {}
 
   funcToTestService() {
-    console.log(this.userSer.LogIn({ username: "user1", password: "1234"}));
+    let res = this.userSer.LogIn({ username: "user1", password: "1234" });
   }
-}
 
+  checkState() {
+    this.userSer.LogOut();
+  }
+
+  checkCurrentUsr() { console.log(this.userSer.currentUser) }
+}
