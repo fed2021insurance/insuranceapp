@@ -21,4 +21,9 @@ export class AppComponent {
   }
 
   checkCurrentUsr() { console.log(this.userSer.currentUser) }
+
+  createUser() { 
+    this.userSer.CreateUser("sabit", "suravi143");
+     
+  }
 }

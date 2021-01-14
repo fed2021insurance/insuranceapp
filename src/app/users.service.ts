@@ -20,30 +20,35 @@ export class UsersService {
       "https://insuranceprj-default-rtdb.firebaseio.com/state/.json"
     ).subscribe(resData => { 
       let keys = Object.keys(resData);
+
       for(let i = 0; i < keys.length; i++) {
         let key = keys[i];
-        if (resData[key].username === formObj.username && resData[key].password === formObj.password) {
+        if(resData[key].username === formObj.username && resData[key].password === formObj.password) {
          this.currentUser = true;
         }
       }
-  
-      // console.log(resData); 
+      console.log(resData);
     })
 
-    // if(req === null) {
-    //   return "User Not Found"
-    // } else {
-    //   return this.currentUser;
-    // }
   }
 
   LogOut() {
     this.currentUser = false;
   }
 
-  CreateUser(formObj: Object) {
-    let newUser = "httpReq_w/FormObj's_content";
-    if(newUser) { return this.currentUser } else { return "Error from httpReq" }
+  CreateUser(username: string, password: string) {
+    function S4() {
+      return (((1 + Math.random()) * 0x10000) | 0).toString(16).substring(1);
+    }
+    let mkGuid = () => {
+      return (S4() + S4() + "-" + S4() + "-4" + S4().substr(0, 3) + "-" + S4() + "-" + S4() + S4() + S4().toLowerCase())
+    } 
+
+    let newId = mkGuid();
+    let newUser = { [newId]: { username, password }}
+    this.http.patch("https://insuranceprj-default-rtdb.firebaseio.com/state/.json", newUser).subscribe(res => {
+      console.log(res);
+    })
   }
 
   SendClaim() {
