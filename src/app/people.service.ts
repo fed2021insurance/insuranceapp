@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class PeopleService {
-persons = []
+  persons = [] //{ name: "Jack", injuries: "Sprang" } 
   constructor() { }
 
   addPerson(person: Object) {

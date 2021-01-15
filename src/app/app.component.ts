@@ -13,7 +13,7 @@ export class AppComponent {
   constructor(private userSer: UsersService) {}
 
   funcToTestService() {
-    let res = this.userSer.LogIn({ username: "user1", password: "1234" });
+    let res = this.userSer.LogIn({ username: "sabit", password: "suravi143" });
   }
 
   checkState() {
@@ -24,6 +24,7 @@ export class AppComponent {
 
   createUser() { 
     this.userSer.CreateUser("sabit", "suravi143");
-     
   }
+
+  sendForm() { this.userSer.SendClaim() }
 }
