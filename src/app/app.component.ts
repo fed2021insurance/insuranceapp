@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-
+import { Router } from "@angular/router"
 import { UsersService } from './users.service'
 
 @Component({
@@ -10,7 +10,6 @@ import { UsersService } from './users.service'
 export class AppComponent {
   title = 'insuranceapp';
 
-  constructor(private userSer: UsersService) {}
-
+  constructor(private userSer: UsersService, private router: Router) {}
   
 }
