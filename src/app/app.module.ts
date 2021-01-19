@@ -1,5 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { HttpClientModule } from "@angular/common/http";
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -8,6 +10,8 @@ import { SignupComponent } from './home/signup/signup.component';
 import { FormsComponent } from './forms/forms.component';
 import { ContactComponent } from './contact/contact.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AuthGuard } from './auth-gaurd.service';
+//import { ErrorPageComponent } from './error-page/error-page.component';
 
 @NgModule({
   declarations: [
@@ -15,14 +19,18 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     HomeComponent,
     SignupComponent,
     FormsComponent,
-    ContactComponent
+    ContactComponent,
+    //ErrorPageComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    FormsModule, 
+    HttpClientModule,
+    ReactiveFormsModule
   ],
-  providers: [],
+  providers: [ AuthGuard ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}
