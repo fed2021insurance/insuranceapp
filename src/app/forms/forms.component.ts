@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { FormArray, FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup } from '@angular/forms';
+import { HttpClient } from '@angular/common/http';
+import { UsersService } from '../users.service';
+import { CarsService } from '../cars.service';
+import { PeopleService } from '../people.service';
 
 @Component({
   selector: 'app-forms',
@@ -8,41 +12,35 @@ import { FormArray, FormControl, FormGroup } from '@angular/forms';
 })
 export class FormsComponent implements OnInit {
   reportCarForm: FormGroup;
-  reportPersonnelForm: FormGroup;
-  constructor() { }
+  constructor(private http: HttpClient, private userService: UsersService, public carsService: CarsService, public peopleService: PeopleService) {}
 
   ngOnInit(): void {
     this.reportCarForm = new FormGroup({
       "userData": new FormGroup({
         "mechDam": new FormControl(null),
-        "bodyDam": new FormControl(null)
-      }),
-    
-      "moreCarDam": new FormArray([])
-    
-    })
-
-    this.reportPersonnelForm = new FormGroup({
-      "userPersonnelData": new FormGroup({
+        "bodyDam": new FormControl(null),
         "name": new FormControl(null),
         "injuries": new FormControl(null)
-      }),
-    
-      "morePersonnelInj": new FormArray([])
-    
+      })
     })
-
+  
   }
 
+
   onAddCar(){
-    const control = new FormControl(null);
-    (<FormArray>this.reportCarForm.get('moreCarDam')).push(control)
+    this.carsService.cars.push({mechanicalDamange: new FormControl, bodyDamange: new FormControl})
+    console.log(this.carsService.cars)
   }
 
   onAddPerson(){
-    const control = new FormControl(null);
-    (<FormArray>this.reportPersonnelForm.get('morePersonnelInj')).push(control)
+    this.peopleService.persons.push({name: new FormControl, injuries: new FormControl})
+    console.log(this.peopleService.persons)
   }
 
+  onSubmit(){
+    this.carsService.cars.unshift({mechanicalDamange: this.reportCarForm.get('userData.mechDam').value, bodyDamange: this.reportCarForm.get('userData.bodyDam').value})
+    this.peopleService.persons.unshift({name: this.reportCarForm.get('userData.name').value, injuries: this.reportCarForm.get('userData.injuries').value})
+    this.userService.SendClaim()
+  
+  }
 }
-
