@@ -8,7 +8,7 @@ export class PeopleService {
   constructor() { }
 
   addPerson(person: Object) {
-    this.persons.push(person);
+    return this.persons.push(person);
   }
 
   removePerson(index: number) {

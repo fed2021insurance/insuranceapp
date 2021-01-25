@@ -59,7 +59,7 @@ mkGuid() {
   
   SendClaim() {
     let formContent = { form: { cars: this.cars.cars, people: this.persons.persons } };
-    this.http.patch(`https://cors-anywhere.herokuapp.com/https://first-database-2c3ae.firebaseio.com/state/1/.json`, formContent).subscribe(res => console.log(res));
+    return this.http.patch(`https://cors-anywhere.herokuapp.com/https://first-database-2c3ae.firebaseio.com/state/1/.json`, formContent).subscribe(res => console.log(res));
   }
 
 }

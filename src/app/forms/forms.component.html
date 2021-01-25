@@ -19,7 +19,7 @@
             </div>
 
             <h3>Add Another Car</h3>
-                <div *ngFor="let car of this.carsService.cars; let i = index">
+                <div *ngFor="let car of arr; let i = index">
                     <div>
                         <mat-form-field appearance="fill">
                             <mat-label>Mechanical Damage</mat-label>
@@ -30,7 +30,7 @@
                     <div>
                         <mat-form-field appearance="fill">
                             <mat-label>Body Damage</mat-label>
-                            <input matInput [formControl]="car.bodyDamange">
+                            <input matInput [formControl]="car.bodyDamange" #bodyD>
                         </mat-form-field>
                     </div> 
                 </div>
@@ -55,7 +55,7 @@
                     </div>
 
                     <h3>Add Personnel Injuries</h3>
-                    <div *ngFor="let person of this.peopleService.persons; let i = index">
+                    <div *ngFor="let person of arr2; let i = index">
                         <div>
                             <mat-form-field appearance="fill">
                                 <mat-label>Personnel Name</mat-label>

@@ -8,7 +8,7 @@ export class CarsService {
   constructor() { }
 
   addCar(car: Object) {
-    this.cars.push(car);
+    return this.cars.push(car);
   }
 
   removeCar(index: number) {
