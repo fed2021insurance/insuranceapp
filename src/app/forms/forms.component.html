@@ -34,7 +34,8 @@
                         </mat-form-field>
                     </div> 
                 </div>
-                <button mat-raised-button type="button" color="warn" (click)="onAddCar()">Add Car</button>
+                <button mat-raised-button type="button" color="primary" (click)="onAddCar()">Add Car</button>
+                <button mat-raised-button type="button" color="warn" (click)="onRemoveCar()">Remove Car</button>
         </div>
 
         <div class="col">
@@ -71,10 +72,11 @@
                         </div>
                     </div>
 
-                    <button mat-raised-button type="button" color="warn" (click)="onAddPerson()">Add Person</button>
+                    <button mat-raised-button type="button" color="primary" (click)="onAddPerson()">Add Person</button>
+                    <button mat-raised-button type="button" color="warn" (click)="onRemovePerson()">Remove Person</button>
                 </div>
         </div>
     </div>
 
-        <button mat-raised-button type="submit" color="warn" (click)='onSubmit()'>Submit</button>
+        <button mat-raised-button type="submit" color="primary" (click)='onSubmit()'>Submit</button>
 </form>

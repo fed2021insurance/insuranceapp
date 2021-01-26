@@ -41,6 +41,10 @@ export class FormsComponent implements OnInit {
     })
     console.log(this.carsService.cars)
   }
+  onRemoveCar(){
+    this.arr.pop()
+    this.carsService.removeCar(this.carsService.cars.length - 1)
+  }
 
   onAddPerson(){
     this.arr2.push({name: new FormControl, injuries: new FormControl})
@@ -51,6 +55,11 @@ export class FormsComponent implements OnInit {
       }
     })
     console.log(this.peopleService.persons)
+  }
+
+  onRemovePerson(){
+    this.arr2.pop()
+    this.peopleService.removePerson(this.peopleService.persons.length - 1)
   }
 
   onSubmit(){
