@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { HttpClient } from '@angular/common/http';
 import { UsersService } from '../users.service';
 import { CarsService } from '../cars.service';
 import { PeopleService } from '../people.service';
@@ -15,8 +14,9 @@ export class FormsComponent implements OnInit {
   reportCarForm: FormGroup;
   arr = []; //to hold the cars objects
   arr2 = []; // to hold the people objects
-  
-  constructor(private http: HttpClient, private userService: UsersService, public carsService: CarsService, public peopleService: PeopleService) {}
+  carRemBtnDisable = true;
+  personRemBtnDisable = true;
+  constructor(private userService: UsersService, public carsService: CarsService, public peopleService: PeopleService) {}
 
   ngOnInit(): void {
     this.reportCarForm = new FormGroup({
@@ -31,6 +31,7 @@ export class FormsComponent implements OnInit {
   }
   
   onAddCar(){
+    this.carRemBtnDisable = false
     this.arr.push({mechanicalDamange: new FormControl(null), bodyDamange: new FormControl});
     let watcher = interval(1000) //to watch the array and update if the array updates
     watcher.subscribe(() => {
@@ -47,6 +48,7 @@ export class FormsComponent implements OnInit {
   }
 
   onAddPerson(){
+    this.personRemBtnDisable = false
     this.arr2.push({name: new FormControl, injuries: new FormControl})
     let watcher = interval(1000) //to watch the array and update if the array updates
     watcher.subscribe(() => {
@@ -65,7 +67,10 @@ export class FormsComponent implements OnInit {
   onSubmit(){
     this.carsService.cars.unshift({mechanicalDamange: this.reportCarForm.get('userData.mechDam').value, bodyDamange: this.reportCarForm.get('userData.bodyDam').value})
     this.peopleService.persons.unshift({name: this.reportCarForm.get('userData.name').value, injuries: this.reportCarForm.get('userData.injuries').value})
-    return this.userService.SendClaim()
+    this.userService.SendClaim()
+    this.reportCarForm.reset()
+    this.arr = [];
+    this.arr2 = [];
   
   }
 }

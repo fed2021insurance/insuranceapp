@@ -25,7 +25,7 @@ mkGuid() {
   LogIn(formObj: { username: string, password: string }) {
 
    this.http.get(
-      "https://insuranceprj-default-rtdb.firebaseio.com/state/.json"
+      "https://first-database-2c3ae.firebaseio.com/state/.json"
     ).subscribe(resData => { 
       let keys = Object.keys(resData);
 
@@ -51,7 +51,7 @@ mkGuid() {
     let newId = this.mkGuid();
     let newUser = { [newId]: { username, password }}
 
-    this.http.patch("https://insuranceprj-default-rtdb.firebaseio.com/state/.json", newUser).subscribe(res => {
+    this.http.patch("https://first-database-2c3ae.firebaseio.com/state/.json", newUser).subscribe(res => {
       this.currentUser = true;
     })
   }
@@ -59,7 +59,17 @@ mkGuid() {
   
   SendClaim() {
     let formContent = { form: { cars: this.cars.cars, people: this.persons.persons } };
-    return this.http.patch(`https://cors-anywhere.herokuapp.com/https://first-database-2c3ae.firebaseio.com/state/1/.json`, formContent).subscribe(res => console.log(res));
+    return this.http.patch(`https://cors-anywhere.herokuapp.com/https://first-database-2c3ae.firebaseio.com/state/${this.userId}/.json`, formContent).subscribe(res => console.log(res));
+  }
+
+  isAuthenticated() {
+    const promise = new Promise((resolve, reject) => {
+      setTimeout(() => {
+        resolve(this.currentUser);
+      }, 1000)
+    })
+
+    return promise;
   }
 
 }

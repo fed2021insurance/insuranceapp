@@ -35,7 +35,7 @@
                     </div> 
                 </div>
                 <button mat-raised-button type="button" color="primary" (click)="onAddCar()">Add Car</button>
-                <button mat-raised-button type="button" color="warn" (click)="onRemoveCar()">Remove Car</button>
+                <button [disabled]="carRemBtnDisable" mat-raised-button type="button" color="warn" (click)="onRemoveCar()">Remove Car</button>
         </div>
 
         <div class="col">
@@ -73,7 +73,7 @@
                     </div>
 
                     <button mat-raised-button type="button" color="primary" (click)="onAddPerson()">Add Person</button>
-                    <button mat-raised-button type="button" color="warn" (click)="onRemovePerson()">Remove Person</button>
+                    <button [disabled]="personRemBtnDisable" mat-raised-button type="button" color="warn" (click)="onRemovePerson()">Remove Person</button>
                 </div>
         </div>
     </div>

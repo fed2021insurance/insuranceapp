@@ -1,1 +1,57 @@
-<p>signup works!</p>
+<div class="d-flex justify-content-center h-100">
+    <div class="d-flex align-items-center">
+        <form [formGroup]="form" *ngIf="form" (ngSubmit)="onSubmit()">
+            <div class="row">
+              <label>Username</label>
+                <input type="text" [formControl]="usernameControl" />
+                <ng-container *ngIf="usernameControl.invalid">
+                  <error *ngIf="usernameControl.required">
+                    You must enter your username
+                  </error>
+                  <error *ngIf="usernameControl.minlength">
+                    Username should have at least 6 alhphanumeric characters
+                  </error>
+                </ng-container>
+            </div>
+        
+        
+    
+            <div class="row">
+             
+                <label>Email</label>
+                <input type="text" [formControl]="emailControl" />
+                <error *ngIf="emailControl.invalid">
+                  You must enter your email
+                </error>
+              
+            </div>
+    
+            <div class="row">
+              
+                <label>Password</label>
+                <input matInput type="password" [formControl]="passwordControl" />
+                <ng-container *ngIf="usernameControl.invalid">
+                  <error *ngIf="passwordControl.required">
+                    You must enter the password
+                  </error>
+                  <error *ngIf="passwordControl.minlength">
+                    Username should have at least 6 alhphanumeric characters
+                  </error>
+                </ng-container>
+              
+            </div>
+    <!--[disabled]="!form.valid"  -->
+            <div class="text-center">
+              <button
+                mat-raised-button
+                color="primary"
+                type="submit"
+                
+              >
+                Sign Up
+              </button>
+            </div>
+          </form>
+        
+      
+    </div>

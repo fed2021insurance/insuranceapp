@@ -14,14 +14,16 @@ import { MatInputModule } from '@angular/material/input';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatButtonModule } from '@angular/material/button';
 import { HttpClientModule } from '@angular/common/http';
-
+import { AuthGuard } from './auth-guard.service';
+import { ErrorPageComponent } from './error-page/error-page.component'
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     SignupComponent,
     FormsComponent,
-    ContactComponent
+    ContactComponent,
+    ErrorPageComponent
   ],
   imports: [
     BrowserModule,
@@ -35,7 +37,7 @@ import { HttpClientModule } from '@angular/common/http';
     MatButtonModule,
     MatRadioModule
   ],
-  providers: [],
+  providers: [ AuthGuard ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
